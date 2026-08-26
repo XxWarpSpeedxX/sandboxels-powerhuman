@@ -8,23 +8,27 @@ elements.powerhuman = {
     tempHigh: 999999999,
     tempLow: -999999999,
 
-    tick: function(pixel) {
-        // Stay alive
-        pixel.dead = false;
+    reactions: {
+        electricity: {
+            elem1: "powerhuman",
+            chance: 1
+        },
 
-        // Remove burning
+        malware: {
+            elem1: "human",
+            chance: 1
+        }
+    },
+
+    tick: function(pixel) {
+        // Once powered up, protect the human
+        pixel.dead = false;
         pixel.burning = false;
         pixel.burn = 0;
-
-        // Remove electricity
         pixel.charge = 0;
         pixel.chargeCD = 0;
-
-        // Remove radiation and poison
         pixel.radiation = 0;
         pixel.poison = 0;
-
-        // Keep temperature normal
         pixel.temp = 37;
     }
 };
